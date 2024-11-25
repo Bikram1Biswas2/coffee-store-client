@@ -1,9 +1,26 @@
 const AddCoffee = () => {
+
+    const handleAddCoffee = e =>{
+        e.preventDefault()
+
+        const form = e.target
+        const name = form.name.value
+        const quantity = form.quantity.value
+        const supplier = form.supplier.value
+        const taste = form.taste.value
+        const category = form.category.value
+        const details = form.details.value
+        const photo = form.photo.value
+
+        const newCoffee = {name,quantity,supplier,taste,category,details,photo}
+        console.log(newCoffee);
+    }
+
   return (
     <div className="mt-6 bg-[#F4F3F0] px-12 py-12">
       <h2 className="text-4xl text-center font-bold mb-5">Add New Coffee</h2>
 <hr />
-      <form className="w-9/12 mx-auto">
+      <form onSubmit={handleAddCoffee} className="w-9/12 mx-auto">
       {/* Row-1 */}
         <div className="md:flex gap-5 justify-center items-center">
          <div className="md:w-1/2">

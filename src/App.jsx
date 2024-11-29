@@ -3,6 +3,7 @@ import { useLoaderData } from 'react-router-dom'
 import './App.css'
 import CoffeeCard from './Components/CoffeeCard'
 import { useState } from 'react'
+import Header from './Components/Header'
 
 
 
@@ -13,6 +14,7 @@ function App() {
 
   return (
     <>
+    <Header></Header>
       <h1 className='text-5xl text-purple-500 text-center'>Hot Hot Cold Cold Coffee: {coffees.length}</h1>
       <div className='grid md:grid-cols-2 gap-5'>
         {

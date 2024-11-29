@@ -18,7 +18,9 @@ const SignUp = () => {
             console.log(result.user);
             const createdAt = result?.user?.metadata?.creationTime
             const newUser = {name,email,createdAt}
-            
+            .then(error=>{
+                console.log(error);
+            })
 
             fetch('http://localhost:5000/users',{
               method:"POST",
@@ -36,9 +38,7 @@ const SignUp = () => {
             })
 
         })
-        .then(error=>{
-            console.log(error);
-        })
+      
     }
 
     return (

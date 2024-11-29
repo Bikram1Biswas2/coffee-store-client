@@ -27,11 +27,13 @@ const Users = () => {
             .then(res=>res.json())
             .then(data=>{
                 console.log(data);
-                   Swal.fire({
-                title: "Deleted!",
-                text: "User has been deleted.",
-                icon: "success"
-              });
+                if(data.deletedCount>0){
+                    Swal.fire({
+                        title: "Deleted!",
+                        text: "User has been deleted.",
+                        icon: "success"
+                      });
+                }
               const remaining = users.filter(u => u._id !== _id)
               setUsers(remaining)
             })

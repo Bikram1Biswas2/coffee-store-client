@@ -8,13 +8,33 @@ const SignUp = () => {
 
     const handleSignUp = e =>{
         e.preventDefault()
+        const name = e.target.name.value
         const email = e.target.email.value 
         const password = e.target.password.value 
-        console.log(email,password);
+        console.log(email,password,name);
 
         createUser(email,password)
         .then(result=>{
             console.log(result.user);
+            const createdAt = result?.user?.metadata?.creationTime
+            const newUser = {name,email,createdAt}
+            
+
+            fetch('http://localhost:5000/users',{
+              method:"POST",
+              headers:{
+                'content-type':'application/json'
+              },
+              body:JSON.stringify(newUser)
+            })
+            .then(res=>res.json())
+            .then(data=>{
+                console.log(data);
+                if(data.insertedId){
+                    alert('User Create successfully')
+                }
+            })
+
         })
         .then(error=>{
             console.log(error);
@@ -33,6 +53,12 @@ const SignUp = () => {
           </div>
           <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
             <form onSubmit={handleSignUp} className="card-body">
+              <div className="form-control">
+                <label className="label">
+                  <span className="label-text">Name</span>
+                </label>
+                <input type="text" placeholder="name" name="name" className="input input-bordered" required />
+              </div>
               <div className="form-control">
                 <label className="label">
                   <span className="label-text">Email</span>
